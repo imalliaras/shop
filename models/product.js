@@ -21,12 +21,17 @@ module.exports = class Product {
     }
 
     save() {
+        this.id= Math.random().toString();
         getProductsFromFile((products) => {
             products.push(this);
             fs.writeFile(productsDataDir, JSON.stringify(products), (err) => {
                 console.log('err', err);
             });
         });
+    }
+
+    static getProductById(cb) {
+        return console.log('test');
     }
 
     static fetchAll(cb) {

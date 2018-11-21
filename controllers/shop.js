@@ -10,6 +10,16 @@ exports.getProducts = (req, res, next) => {
     });
 }
 
+exports.getProduct = (req, res, next) => {
+    Product.fetchAll((products) => {
+        res.render('shop/product-detail', { 
+            prods: products, 
+            pageTitle: 'Product Details', 
+            path: '/product' 
+        });
+    });
+}
+
 exports.getIndex = (req, res, next) => {
     Product.fetchAll((products) => {
         res.render('shop/index', { 
