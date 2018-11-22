@@ -11,9 +11,12 @@ exports.getProducts = (req, res, next) => {
 }
 
 exports.getProduct = (req, res, next) => {
-    Product.fetchAll((products) => {
+    const id = req.params.id;
+    
+    Product.getProductById(id, (product) => {
+        console.log('product', product);
         res.render('shop/product-detail', { 
-            prods: products, 
+            prods: product, 
             pageTitle: 'Product Details', 
             path: '/product' 
         });
