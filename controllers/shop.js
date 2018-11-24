@@ -34,8 +34,9 @@ exports.getIndex = (req, res, next) => {
 };
 
 exports.getCart = (req, res, next) => {
-    Product.fetchAll((products) => {
+    Cart.fetchAll((cart) => {
         res.render('shop/cart', { 
+            cart: cart,
             pageTitle: 'Cart', 
             path: '/cart' 
         });
@@ -44,7 +45,9 @@ exports.getCart = (req, res, next) => {
 
 exports.postCart = (req, res, next) => {
     const id = req.body.id;
-    Cart.addProduct(id);
+    Product.getProductById(id, (product) => {
+        Cart.addProduct(product);
+    });
     res.redirect('/');
 };
 
